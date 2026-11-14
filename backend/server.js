@@ -10,6 +10,9 @@ const categoryRoutes = require("./routes/categoryRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const addressRoutes = require("./routes/addressRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const customerRoutes = require("./routes/customerRoutes");
+const inventoryRoutes = require("./routes/inventoryRoutes");
 
 const app = express();
 
@@ -24,6 +27,9 @@ app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/cart", cartRoutes);
 app.use("/api/v1/addresses", addressRoutes);
 app.use("/api/v1/orders", orderRoutes);
+app.use("/api/v1/admin", adminRoutes);
+app.use("/api/v1/admin/customers", customerRoutes);
+app.use("/api/v1/admin/inventory", inventoryRoutes);                 
 
 
 // Home route
