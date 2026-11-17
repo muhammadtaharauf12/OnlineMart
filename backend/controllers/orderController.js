@@ -79,20 +79,22 @@ const placeOrder = async (req, res) => {
         }
 
         // Create order
-        const order = await Order.create({
-            user: req.user._id,
-            items: orderItems,
-            shippingAddress: {
-                fullName: address.fullName,
-                phone: address.phone,
-                addressLine: address.addressLine,
-                city: address.city,
-                province: address.province,
-                postalCode: address.postalCode
-            },
-            totalAmount,
-            paymentMethod: paymentMethod || "COD"
-        });
+      const order = await Order.create({
+    user: req.user._id,
+    items: orderItems,
+    shippingAddress: {
+        fullName: address.fullName,
+        phone: address.phone,
+        addressLine: address.addressLine,
+        city: address.city,
+        province: address.province,
+        postalCode: address.postalCode
+    },
+    totalAmount,
+    paymentMethod: paymentMethod || "COD",
+    paymentStatus: "Pending",
+    orderStatus: "Pending"
+});
 
         // Reduce product stock
         for (const item of cart.items) {
@@ -171,6 +173,7 @@ const getSingleOrder = async (req, res) => {
 
 
 // Cancel Order
+
 const cancelOrder = async (req, res) => {
     try {
         const order = await Order.findOne({
@@ -185,10 +188,16 @@ const cancelOrder = async (req, res) => {
             });
         }
 
-        if (!["Pending", "Confirmed"].includes(order.orderStatus)) {
+        // Check current order status
+        const currentStatus = String(order.orderStatus || "")
+            .trim()
+            .toLowerCase();
+
+        // Only Pending and Confirmed orders can be cancelled
+        if (!["pending", "confirmed"].includes(currentStatus)) {
             return res.status(400).json({
                 success: false,
-                message: "This order cannot be cancelled"
+                message: "This order cannot be cancelled or is already cancelled"
             });
         }
 
@@ -199,22 +208,25 @@ const cancelOrder = async (req, res) => {
             });
         }
 
+        // Update order status
         order.orderStatus = "Cancelled";
+
         await order.save();
 
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             message: "Order cancelled successfully",
             order
         });
 
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             message: error.message
         });
     }
 };
+    
 
 
 module.exports = {

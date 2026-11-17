@@ -63,6 +63,74 @@ const getDashboardStats = async (req, res) => {
     }
 };
 
+const getAllOrders = async (req, res) => {
+    try {
+        const orders = await Order.find()
+            .populate("user", "firstName lastName email phone")
+            .sort({ createdAt: -1 });
+
+        res.status(200).json({
+            success: true,
+            count: orders.length,
+            orders
+        });
+    } catch (error) {
+        console.log("Get All Orders Error:", error.message);
+
+        res.status(500).json({
+            success: false,
+            message: "Failed to fetch orders"
+        });
+    }
+};
+
+const updateOrderStatus = async (req, res) => {
+    try {
+        const { orderStatus } = req.body;
+
+        const allowedStatuses = [
+            "Pending",
+            "Confirmed",
+            "Processing",
+            "Shipped",
+            "Delivered",
+            "Cancelled"
+        ];
+
+        if (!allowedStatuses.includes(orderStatus)) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid order status"
+            });
+        }
+
+        const order = await Order.findById(req.params.id);
+
+        if (!order) {
+            return res.status(404).json({
+                success: false,
+                message: "Order not found"
+            });
+        }
+
+        order.orderStatus = orderStatus;
+        await order.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Order status updated",
+            order
+        });
+    } catch (error) {
+        console.log("Update Order Status Error:", error.message);
+
+        res.status(500).json({
+            success: false,
+            message: "Failed to update order status"
+        });
+    }
+};
+
 module.exports = {
-    getDashboardStats
+    getDashboardStats,getAllOrders, updateOrderStatus
 };

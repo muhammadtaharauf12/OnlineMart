@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 
 const addressSchema = new mongoose.Schema(
@@ -43,11 +44,6 @@ const addressSchema = new mongoose.Schema(
             type: String,
             enum: ["Home", "Office", "Other"],
             default: "Home"
-        },
-
-        isDefault: {
-            type: Boolean,
-            default: false
         }
     },
     {

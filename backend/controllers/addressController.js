@@ -1,3 +1,4 @@
+
 const Address = require("../models/Address");
 
 // Add New Address
@@ -10,8 +11,7 @@ const addAddress = async (req, res) => {
             city,
             province,
             postalCode,
-            label,
-            isDefault
+            label
         } = req.body;
 
         if (!fullName || !phone || !addressLine || !city || !province) {
@@ -21,11 +21,6 @@ const addAddress = async (req, res) => {
             });
         }
 
-        // If this is the first address, make it default
-        const addressCount = await Address.countDocuments({
-            user: req.user._id
-        });
-
         const address = await Address.create({
             user: req.user._id,
             fullName,
@@ -34,8 +29,7 @@ const addAddress = async (req, res) => {
             city,
             province,
             postalCode,
-            label,
-            isDefault: addressCount === 0 ? true : isDefault
+            label
         });
 
         res.status(201).json({
@@ -169,51 +163,10 @@ const deleteAddress = async (req, res) => {
 };
 
 
-// Set Default Address
-const setDefaultAddress = async (req, res) => {
-    try {
-        const address = await Address.findOne({
-            _id: req.params.id,
-            user: req.user._id
-        });
-
-        if (!address) {
-            return res.status(404).json({
-                success: false,
-                message: "Address not found"
-            });
-        }
-
-        // Remove default status from all customer addresses
-        await Address.updateMany(
-            { user: req.user._id },
-            { isDefault: false }
-        );
-
-        // Make selected address default
-        address.isDefault = true;
-        await address.save();
-
-        res.status(200).json({
-            success: true,
-            message: "Default address updated successfully",
-            address
-        });
-
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: error.message
-        });
-    }
-};
-
-
 module.exports = {
     addAddress,
     getAddresses,
     getSingleAddress,
     updateAddress,
-    deleteAddress,
-    setDefaultAddress
+    deleteAddress
 };
