@@ -5,7 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Search, ChevronDown, ChevronUp } from "lucide-react";
 
-const API = "http://localhost:5000/api/v1/admin/orders";
+const API = "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/admin/orders";
 
 const STATUSES = [
   "Pending",
@@ -64,7 +64,7 @@ export default function AdminOrdersPage() {
         const headers = { Authorization: `Bearer ${token}` };
 
         const meResponse = await axios.get(
-          "http://localhost:5000/api/v1/auth/me",
+          "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/auth/me",
           { headers }
         );
 

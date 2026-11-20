@@ -21,7 +21,7 @@ function ProductDetailsContent() {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/v1/products/${id}`
+          `http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/products/${id}`
         );
 
         setProduct(response.data.product);
@@ -50,7 +50,7 @@ function ProductDetailsContent() {
       setAddingToCart(true);
 
       const response = await axios.post(
-        "http://localhost:5000/api/v1/cart/add",
+        "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/cart/add",
         {
           productId: product._id,
           quantity: quantity,

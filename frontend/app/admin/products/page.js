@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Plus, Pencil, Trash2, Search, X, ArrowLeft } from "lucide-react";
 
-const API = "http://localhost:5000/api/v1/products";
+const API = "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/products";
 
 const FALLBACK_IMAGE =
   "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500";
@@ -68,7 +68,7 @@ export default function AdminProductsPage() {
     const fetchProducts = async () => {
       try {
         const meResponse = await axios.get(
-          "http://localhost:5000/api/v1/auth/me",
+          "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/auth/me",
           { headers: { Authorization: `Bearer ${token}` } }
         );
 

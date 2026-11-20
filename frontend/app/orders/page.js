@@ -26,7 +26,7 @@ export default function OrdersPage() {
         }
 
         const response = await axios.get(
-          "http://localhost:5000/api/v1/orders",
+          "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/orders",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -60,7 +60,7 @@ export default function OrdersPage() {
     setCancellingId(orderId);
 
     const response = await axios.patch(
-      `http://localhost:5000/api/v1/orders/${orderId}/cancel`,
+      `http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/orders/${orderId}/cancel`,
       {},
       {
         headers: {

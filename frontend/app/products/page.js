@@ -46,7 +46,7 @@ function ProductsContent({ initialSearch, categorySlug, offersOnly }) {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/products"
+          "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/products"
         );
 
         setProducts(response.data.products || []);
