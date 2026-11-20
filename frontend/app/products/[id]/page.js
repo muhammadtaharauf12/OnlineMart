@@ -21,7 +21,7 @@ function ProductDetailsContent() {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/products/${id}`
+          `https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/products/${id}`
         );
 
         setProduct(response.data.product);
@@ -50,7 +50,7 @@ function ProductDetailsContent() {
       setAddingToCart(true);
 
       const response = await axios.post(
-        "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/cart/add",
+        "https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/cart/add",
         {
           productId: product._id,
           quantity: quantity,

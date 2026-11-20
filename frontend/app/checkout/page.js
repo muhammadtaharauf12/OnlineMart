@@ -62,8 +62,8 @@ export default function CheckoutPage() {
         };
 
         const [cartResponse, addressResponse] = await Promise.all([
-          axios.get("http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/cart", { headers }),
-          axios.get("http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/addresses", { headers }),
+          axios.get("https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/cart", { headers }),
+          axios.get("https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/addresses", { headers }),
         ]);
 
         setCart(cartResponse.data.cart);
@@ -125,7 +125,7 @@ export default function CheckoutPage() {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/addresses",
+        "https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/addresses",
         addressForm,
         {
           headers: {
@@ -135,7 +135,7 @@ export default function CheckoutPage() {
       );
 
       const addressResponse = await axios.get(
-        "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/addresses",
+        "https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/addresses",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -212,7 +212,7 @@ export default function CheckoutPage() {
       const token = localStorage.getItem("token");
 
       await axios.put(
-        `http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/addresses/${addressId}`,
+        `https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/addresses/${addressId}`,
         addressForm,
         {
           headers: {
@@ -222,7 +222,7 @@ export default function CheckoutPage() {
       );
 
       const response = await axios.get(
-        "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/addresses",
+        "https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/addresses",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -264,7 +264,7 @@ export default function CheckoutPage() {
       const token = localStorage.getItem("token");
 
       await axios.delete(
-        `http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/addresses/${addressId}`,
+        `https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/addresses/${addressId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -315,7 +315,7 @@ export default function CheckoutPage() {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/orders",
+        "https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/orders",
         {
           addressId: selectedAddress,
           paymentMethod: "COD",

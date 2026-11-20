@@ -52,7 +52,7 @@ export default function Navbar() {
 
       try {
         const response = await axios.get(
-          "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/cart",
+          "https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/cart",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -92,7 +92,7 @@ export default function Navbar() {
 
       try {
         const response = await axios.get(
-          "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/auth/me",
+          "https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/auth/me",
           {
             headers: { Authorization: `Bearer ${token}` },
           }

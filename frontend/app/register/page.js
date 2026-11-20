@@ -24,7 +24,7 @@ export default function RegisterPage() {
       setLoading(true);
 
       await axios.post(
-        "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/auth/register",
+        "https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/auth/register",
         {
           firstName,
           lastName,

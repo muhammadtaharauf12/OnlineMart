@@ -38,7 +38,7 @@ export default function CartPage() {
       }
 
       const response = await axios.get(
-        "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/cart",
+        "https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/cart",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -69,7 +69,7 @@ export default function CartPage() {
         }
 
         const response = await axios.get(
-          "http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/cart",
+          "https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/cart",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -107,7 +107,7 @@ export default function CartPage() {
       const token = localStorage.getItem("token");
 
       await axios.put(
-        `http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/cart/update/${itemId}`,
+        `https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/cart/update/${itemId}`,
         { quantity },
         {
           headers: {
@@ -134,7 +134,7 @@ export default function CartPage() {
       const token = localStorage.getItem("token");
 
       await axios.delete(
-        `http://https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/cart/remove/${itemId}`,
+        `https://fearless-simplicity-production-ab636cfe.up.railway.app/api/v1/cart/remove/${itemId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
